@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Add New Job Estimate</title>
+    <!-- Favicon and touch icons -->
+
+    <script src="https://kit.fontawesome.com/074f69c8ee.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon"
+        href="http://sub71.protegeglobal.com/ERPDemo/my-assets/image/logo/70cb0d20c604961699940b8aa1225f83.jpg"
+        type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon"
+        href="http://sub71.protegeglobal.com/ERPDemo/assets/dist/img/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72"
+        href="http://sub71.protegeglobal.com/ERPDemo/assets/dist/img/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114"
+        href="http://sub71.protegeglobal.com/ERPDemo/assets/dist/img/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144"
+        href="http://sub71.protegeglobal.com/ERPDemo/assets/dist/img/ico/apple-touch-icon-144-precomposed.png">
+    <!-- Start Global Mandatory Style-->
+
+    <!-- jquery-ui css -->
+    <link href="http://sub71.protegeglobal.com/ERPDemo/assets/plugins/jquery-ui-1.12.1/jquery-ui.min.css"
+        rel="stylesheet" type="text/css" />
+    <!-- Bootstrap -->
+    <link href="http://sub71.protegeglobal.com/ERPDemo/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <!-- modals css -->
+    <link href="http://sub71.protegeglobal.com/ERPDemo/assets/plugins/modals/component.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Font Awesome -->
+    <link href="http://sub71.protegeglobal.com/ERPDemo/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="http://sub71.protegeglobal.com/ERPDemo/assets/css/cmxform.css" rel="stylesheet" type="text/css" />
+    <!-- Themify icons -->
+    <link href="http://sub71.protegeglobal.com/ERPDemo/assets/themify-icons/themify-icons.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Pe-icon -->
+    <link href="http://sub71.protegeglobal.com/ERPDemo/assets/pe-icon-7-stroke/css/pe-icon-7-stroke.css"
+        rel="stylesheet" type="text/css" />
+    <!-- Data Tables -->
+    <link href="http://sub71.protegeglobal.com/ERPDemo/assets/plugins/datatables/dataTables.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Theme style -->
+    <link href="http://sub71.protegeglobal.com/ERPDemo/assets/dist/css/styleBD.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="http://sub71.protegeglobal.com/ERPDemo/assets/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <!-- jQuery -->
+    <script src="http://sub71.protegeglobal.com/ERPDemo/assets/plugins/jQuery/jquery-1.12.4.min.js"
+        type="text/javascript"></script>
+    <script src="http://sub71.protegeglobal.com/ERPDemo/assets/js/jquery.validate.min.js"
+        type="text/javascript"></script>
+    <script src="http://sub71.protegeglobal.com/ERPDemo/assets/ckeditor/ckeditor.js"></script>
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="se-pre-con"></div>
+
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("form :input").attr("autocomplete", "off");
+        })
+    </script> <!-- Customer js php -->
+    <script src="http://sub71.protegeglobal.com/ERPDemo/my-assets/js/admin_js/json/customer.js.php"></script>
+    <!-- Product jobestimate js -->
+    <script src="http://sub71.protegeglobal.com/ERPDemo/my-assets/js/admin_js/json/product_jobestimate.js.php"></script>
+    <!-- Invoice js -->
+    <script src="http://sub71.protegeglobal.com/ERPDemo/my-assets/js/admin_js/jobestimate.js"
+        type="text/javascript"></script>
+
+    <!-- Add new jobestimate start -->
+    <style>
+        #bank_info_hide {
+            display: none;
+        }
+
+        #payment_from_2 {
+            display: none;
+        }
+    </style>
+
+    <!-- Customer type change by javascript start -->
+    <script type="text/javascript">
+        function bank_info_show(payment_type) {
+            if (payment_type.value == "1") {
+                document.getElementById("bank_info_hide").style.display = "none";
+            } else {
+                document.getElementById("bank_info_hide").style.display = "block";
+            }
+        }
+
+        function active_customer(status) {
+            if (status == "payment_from_2") {
+                document.getElementById("payment_from_2").style.display = "none";
+                document.getElementById("payment_from_1").style.display = "block";
+                document.getElementById("myRadioButton_2").checked = false;
+                document.getElementById("myRadioButton_1").checked = true;
+            } else {
+                document.getElementById("payment_from_1").style.display = "none";
+                document.getElementById("payment_from_2").style.display = "block";
+                document.getElementById("myRadioButton_2").checked = false;
+                document.getElementById("myRadioButton_1").checked = true;
+            }
+        }
+    </script>
+    <!-- Customer type change by javascript end -->
+
+    <!-- Add New Invoice Start -->
+    <div class="content-wrapper">
+
+
+        <section class="content">
+            <!-- Alert Message -->
+
+
+
+            <!--Add Invoice -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-bd lobidrag">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>New Job Estimate</h4>
+                            </div>
+                        </div>
+                        <form action="http://sub71.protegeglobal.com/ERPDemo/Cjobestimate/insert_jobestimate"
+                            class="form-vertical" id="" name="" enctype="multipart/form-data" method="post"
+                            accept-charset="utf-8">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6"></div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group col-sm-4">
+                                            <label for="date" class="control-label">DATE OF QUOTE</label>
+                                            <input class="datepicker form-control" type="text" size="50"
+                                                name="date_of_quote" id="date_of_quote" value="2021-06-09"
+                                                tabindex="6" />
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label for="date" class="control-label">WORK START DATE</label>
+                                            <input class="datepicker form-control" type="text" size="50"
+                                                name="work_start_date" id="work_start_date" value="2021-06-09"
+                                                tabindex="6" />
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label for="date" class="control-label">WORK END DATE</label>
+                                            <input class="datepicker form-control" type="text" size="50"
+                                                name="work_end_date" id="work_end_date" value="2021-06-09"
+                                                tabindex="6" />
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label for="date" class="control-label">QUOTE NUMBER</label>
+                                            <input class="form-control" type="text" name="qoute_number"
+                                                id="qoute_number" value="" readonly />
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label for="date" class="control-label">VALID UNTILL</label>
+                                            <input class="datepicker form-control" type="text" size="50"
+                                                name="valid_until" id="valid_until" value="2021-06-09" tabindex="6" />
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label for="date" class="control-label">PAYMENT DUE BY</label>
+                                            <input class="datepicker form-control" type="text" size="50"
+                                                name="payment_due_by" id="payment_due_by" value="2021-06-09"
+                                                tabindex="6" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 col-md-3">
+                                        <h5>CLIENT</h5>
+                                        <hr>
+                                        <input type="text" class="form-control" name="client_name" id="client_name"
+                                            value="" placeholder="ATTN: Name / Dept" />
+                                        <input type="text" class="form-control" name="client_company"
+                                            id="client_company" value="" placeholder="Company Name" />
+                                        <textarea rows="4" name="client_address" id="client_address"
+                                            placeholder="Address" style="width: 100%;"></textarea>
+                                        <input type="text" class="form-control" name="client_phone" id="client_phone"
+                                            value="" placeholder="Phone" />
+                                        <input type="text" class="form-control" name="client_email" id="client_email"
+                                            value="" placeholder="Email Address" />
+                                        <br>
+                                        <br>
+                                        <h5>DESCRIPTION OF WORK</h5>
+                                        <hr>
+                                        <textarea rows="10" name="description" id="description"
+                                            style="width: 100%;"></textarea>
+                                        <br>
+                                        <br>
+                                        <h5>TERMS &amp; CONDITIONS</h5>
+                                        <hr>
+                                        <textarea rows="10" name="terms" id="terms" style="width: 100%;"
+                                            readonly>Please Make Cheque Payable to Your Company Name.</textarea>
+                                        <br>
+                                        <br>
+                                        <div class="text-center">
+                                            <h1>THANK YOU</h1>
+                                            <p>For Questions Concerning This Quote, Please Contact</p>
+                                            <p>Name</p>
+                                            <p>Phone</p>
+                                            <p>Email</p>
+                                            <h3>www.yourwebsite.com</h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9 col-md-9">
+                                        <div class="table-responsive" style="margin-top: 10px">
+                                            <table class="table table-bordered table-hover" id="normaljobestimate">
+                                                <tbody id="addjobestimateItemMaterial">
+                                                    <tr>
+                                                        <td class="text-center" width="45%">MATERIAL</td>
+                                                        <td class="text-center" width="15%">QTY</td>
+                                                        <td class="text-center" width="20%">UNIT PRICE</td>
+                                                        <td class="text-center" width="15%">Total</td>
+                                                        <td class="text-center" width="5%">Action</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" name="product_name[]"
+                                                                onkeypress="jobestimate_productList(1);"
+                                                                class="form-control productSelection"
+                                                                placeholder='Product Name' required="" id="product_name"
+                                                                tabindex="7">
+                                                            <input type="hidden"
+                                                                class="autocomplete_hidden_value product_id_1"
+                                                                name="product_id[]" id="SchoolHiddenId" />
+                                                            <input type="hidden" class="baseUrl"
+                                                                value="http://sub71.protegeglobal.com/ERPDemo/" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="product_quantity[]"
+                                                                onkeyup="quantity_calculate(1, 'material');"
+                                                                onchange="quantity_calculate(1, 'material');"
+                                                                class="material_total_qntt_1 form-control text-right"
+                                                                id="material_total_qntt_1" placeholder="0.00" min="0"
+                                                                tabindex="8" required="required" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="product_rate[]"
+                                                                id="material_price_item_1"
+                                                                class="material_price_item_1 price_item form-control text-right"
+                                                                tabindex="9" required=""
+                                                                onkeyup="quantity_calculate(1, 'material');"
+                                                                onchange="quantity_calculate(1, 'material');"
+                                                                placeholder="0.00" min="0" />
+                                                        </td>
+                                                        <td>
+                                                            <input class="material_total_price form-control text-right"
+                                                                type="text" name="total_price[]"
+                                                                id="material_total_price_1" value="0.00"
+                                                                readonly="readonly" />
+                                                        </td>
+                                                        <td align="center">
+                                                            <button class="btn btn-danger text-center" type="button"
+                                                                value="Delete" onclick="deleteRow(this)"
+                                                                tabindex="11"><i class="fa fa-minus-circle"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="addjobestimateItemMaterialTotal">
+                                                        <td colspan="3" style="text-align:right;"><b>TOTAL
+                                                                MATERIALS</b></td>
+                                                        <td class="text-right" colspan="2">
+                                                            <input type="text" id="grandTotalMaterial"
+                                                                class="form-control text-right"
+                                                                name="grand_total_price_material" value="0.00"
+                                                                readonly="readonly" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="center">
+                                                        <td colspan="5"><input type="button" id="add_jobestimate_item"
+                                                                class="btn btn-info" name="add-jobestimate-item"
+                                                                onClick="addInputFieldMaterial('addjobestimateItemMaterial');"
+                                                                value="ADD NEW MATERIAL ITEM" tabindex="12" /></td>
+                                                        </td>
+                                                </tbody>
+                                                <tbody id="addjobestimateItemLabour">
+                                                    <br />
+                                                    <tr>
+                                                        <td class="text-center" width="45%">LABOUR</td>
+                                                        <td class="text-center" width="15%">HOURS</td>
+                                                        <td class="text-center" width="20%">RATE</td>
+                                                        <td class="text-center" width="15%">Total</td>
+                                                        <td class="text-center" width="5%">Action</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" name="labour_name[]" id="labour_name"
+                                                                class="form-control">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="labour_quantity[]"
+                                                                onkeyup="quantity_calculate(1, 'labour');"
+                                                                onchange="quantity_calculate(1, 'labour');"
+                                                                class="labour_total_qntt_1 form-control text-right"
+                                                                id="labour_total_qntt_1" placeholder="0.00" min="0"
+                                                                tabindex="8" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="labour_rate[]"
+                                                                id="labour_price_item_1"
+                                                                class="labour_price_item1 labour_price_item form-control text-right"
+                                                                tabindex="9" required=""
+                                                                onkeyup="quantity_calculate(1, 'labour');"
+                                                                onchange="quantity_calculate(1, 'labour');"
+                                                                placeholder="0.00" min="0" />
+                                                        </td>
+                                                        <td>
+                                                            <input class="labour_total_price form-control text-right"
+                                                                type="text" name="labour_total_price[]"
+                                                                id="labour_total_price_1" value="0.00"
+                                                                readonly="readonly" />
+                                                        </td>
+                                                        <td align="center">
+                                                            <button class="btn btn-danger text-center" type="button"
+                                                                value="Delete" onclick="deleteRow(this)"
+                                                                tabindex="11"><i class="fa fa-minus-circle"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="addjobestimateItemLabourTotal">
+                                                        <td colspan="3" style="text-align:right;"><b>TOTAL
+                                                                LABOUR</b></td>
+                                                        <td class="text-right" colspan="2">
+                                                            <input type="text" id="grandTotalLabour"
+                                                                class="form-control text-right"
+                                                                name="grand_total_price_labour" value="0.00"
+                                                                readonly="readonly" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="center">
+                                                        <td colspan="5"><input type="button"
+                                                                id="add_jobestimate_item_labour" class="btn btn-info"
+                                                                name="add-jobestimate-item-labour"
+                                                                onClick="addInputFieldLabour('addjobestimateItemLabour');"
+                                                                value="ADD NEW LABOUR ITEM" tabindex="12" /></td>
+                                                    </tr>
+                                                </tbody>
+                                                <tbody id="addjobestimateItemMisc">
+                                                    <br />
+                                                    <tr>
+                                                        <td class="text-center" width="45%">MISCELLANEOUS CHARGES
+                                                        </td>
+                                                        <td class="text-center" width="15%">HOURS / QTY</td>
+                                                        <td class="text-center" width="20%">UNIT PRICE</td>
+                                                        <td class="text-center" width="15%">Total</td>
+                                                        <td class="text-center" width="5%">Action</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" name="misc_name[]" class="form-control"
+                                                                id="misc_name" tabindex="7">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="misc_quantity[]"
+                                                                onkeyup="quantity_calculate(1, 'misc');"
+                                                                onchange="quantity_calculate(1, 'misc');"
+                                                                class="misc_total_qntt_1 form-control text-right"
+                                                                id="misc_total_qntt_1" placeholder="0.00" min="0"
+                                                                tabindex="8" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="misc_rate[]" id="misc_price_item_1"
+                                                                class="misc_price_item1 misc_price_item form-control text-right"
+                                                                tabindex="9" onkeyup="quantity_calculate(1, 'misc');"
+                                                                onchange="quantity_calculate(1, 'misc');"
+                                                                placeholder="0.00" min="0" />
+                                                        </td>
+                                                        <td>
+                                                            <input class="misc_total_price form-control text-right"
+                                                                type="text" name="misc_total_price[]"
+                                                                id="misc_total_price_1" value="0.00"
+                                                                readonly="readonly" />
+                                                        </td>
+                                                        <td align="center">
+                                                            <button class="btn btn-danger text-center" type="button"
+                                                                value="Delete" onclick="deleteRow(this)"
+                                                                tabindex="11"><i class="fa fa-minus-circle"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="addjobestimateItemMiscTotal">
+                                                        <td colspan="3" style="text-align:right;"><b>TOTAL
+                                                                MISCELLANEOUS</b></td>
+                                                        <td class="text-right" colspan="2">
+                                                            <input type="text" id="grandTotalMisc"
+                                                                class="form-control text-right"
+                                                                name="grand_total_price_misc" value="0.00"
+                                                                readonly="readonly" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr align="center">
+                                                        <td colspan="5"><input type="button"
+                                                                id="add_jobestimate_item_misc" class="btn btn-info"
+                                                                name="add-jobestimate-item_misc"
+                                                                onClick="addInputFieldMisc('addjobestimateItemMisc');"
+                                                                value="ADD NEW MISCELLANEOUS ITEM" tabindex="12" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td style="text-align:right;" colspan="3"><b>SUBTOTAL</b>
+                                                        </td>
+                                                        <td class="text-right" colspan="2">
+                                                            <input id="sub_total_amount" tabindex="-1"
+                                                                class="form-control text-right valid" name="sub_total"
+                                                                value="0.00" readonly="readonly" aria-invalid="false"
+                                                                type="text">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align:right;" colspan="3"><small>enter total
+                                                                amount </small><b>DISCOUNT</b></td>
+                                                        <td class="text-right" colspan="2">
+                                                            <input type="text" onkeyup="calculateSum();"
+                                                                onchange="calculateSum();" id="jobestimate_discount"
+                                                                class="form-control text-right"
+                                                                name="jobestimate_discount" placeholder="0.00" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align:right;" colspan="3"><b>SUBTOTAL LESS
+                                                                DISCOUNT</b></td>
+                                                        <td class="text-right" colspan="2">
+                                                            <input type="text" id="total_discount_ammount"
+                                                                class="form-control text-right" name="total_discount"
+                                                                value="0.00" readonly="readonly" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align:right;" colspan="3"><small>enter
+                                                                percentage </small><b>TAX RATE</b></td>
+                                                        <td class="text-right" colspan="2">
+                                                            <input id="tax_rate" tabindex="-1"
+                                                                class="form-control text-right valid" name="tax_rate"
+                                                                placeholder="0.00" aria-invalid="false" type="text"
+                                                                onkeyup="calculateSum();" onchange="calculateSum();">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align:right;" colspan="3"><b>TOTAL TAX</b>
+                                                        </td>
+                                                        <td class="text-right" colspan="2">
+                                                            <input id="total_tax_ammount" tabindex="-1"
+                                                                class="form-control text-right valid" name="total_tax"
+                                                                value="0.00" readonly="readonly" aria-invalid="false"
+                                                                type="text">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align:right;" colspan="3"><b>SHIPPING /
+                                                                HANDLING</b></td>
+                                                        <td class="text-right" colspan="2">
+                                                            <input id="shipping" tabindex="-1"
+                                                                class="form-control text-right valid" name="shipping"
+                                                                placeholder="0.00" aria-invalid="false" type="text"
+                                                                onkeyup="calculateSum();" onchange="calculateSum();">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align:right;" colspan="3"><b>OTHERS</b></td>
+                                                        <td class="text-right" colspan="2">
+                                                            <input id="others" tabindex="-1"
+                                                                class="form-control text-right valid" name="others"
+                                                                placeholder="0.00" aria-invalid="false" type="text"
+                                                                onkeyup="calculateSum();" onchange="calculateSum();">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align:right;" colspan="3"><b>TOTAL</b></td>
+                                                        <td class="text-right" colspan="2"><input type="text"
+                                                                id="dueAmmount" class="form-control text-right"
+                                                                name="due_amount" value="0.00" readonly="readonly" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center" colspan="5">
+                                                            <input type="submit" id="add_jobestimate"
+                                                                class="btn btn-success" name="add-jobestimate"
+                                                                value="Submit" tabindex="15" />
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Invoice Report End -->
+    <footer class="main-footer">
+        <strong>
+            Copyright Your Company © 2020. All rights reserved.
+            <!--Copyrite by Protege Global 2019-->
+        </strong>
+    </footer>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- Start Core Plugins-->
+    <!-- jquery-ui -->
+    <script src="http://sub71.protegeglobal.com/ERPDemo/assets/plugins/jquery-ui-1.12.1/jquery-ui.min.js"
+        type="text/javascript"></script>
+    <!-- Bootstrap -->
+    <script src="http://sub71.protegeglobal.com/ERPDemo/assets/bootstrap/js/bootstrap.min.js"
+        type="text/javascript"></script>
+    <!-- SlimScroll -->
+    <script src="http://sub71.protegeglobal.com/ERPDemo/assets/plugins/slimScroll/jquery.slimscroll.min.js"
+        type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src="http://sub71.protegeglobal.com/ERPDemo/assets/plugins/fastclick/fastclick.min.js"
+        type="text/javascript"></script>
+    <!-- AdminBD frame -->
+    <script src="http://sub71.protegeglobal.com/ERPDemo/assets/dist/js/frame.min.js" type="text/javascript"></script>
+    <!-- Sparkline js -->
+    <script src="http://sub71.protegeglobal.com/ERPDemo/assets/plugins/sparkline/sparkline.min.js"
+        type="text/javascript"></script>
+    <!-- Counter js -->
+    <script src="http://sub71.protegeglobal.com/ERPDemo/assets/plugins/counterup/waypoints.min.js"
+        type="text/javascript"></script>
+    <script src="http://sub71.protegeglobal.com/ERPDemo/assets/plugins/counterup/jquery.counterup.min.js"
+        type="text/javascript"></script>
+    <!-- dataTables js -->
+    <script src="http://sub71.protegeglobal.com/ERPDemo/assets/plugins/datatables/dataTables.min.js"
+        type="text/javascript"></script>
+
+    <!-- Modal js -->
+    <script src="http://sub71.protegeglobal.com/ERPDemo/assets/plugins/modals/classie.js"
+        type="text/javascript"></script>
+    <script src="http://sub71.protegeglobal.com/ERPDemo/assets/plugins/modals/modalEffects.js"
+        type="text/javascript"></script>
+
+    <!-- Dashboard js -->
+    <script src="http://sub71.protegeglobal.com/ERPDemo/assets/dist/js/dashboard.min.js"
+        type="text/javascript"></script>
+    <script src="http://sub71.protegeglobal.com/ERPDemo/assets/js/select2.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(".datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
+
+        // select 2 dropdown 
+        $("select.form-control:not(.dont-select-me)").select2({
+            placeholder: "Select option",
+            allowClear: true
+        });
+
+        //Insert supplier
+        $("#insert_supplier").validate();
+        $("#validate").validate();
+
+        //Update supplier
+        $("#supplier_update").validate();
+
+        //Update customer
+        $("#customer_update").validate();
+
+        //Insert customer
+        $("#insert_customer").validate();
+
+        //Update product
+        $("#product_update").validate();
+
+        //Insert product
+        $("#insert_product").validate();
+
+        //Insert pos invoice
+        $("#insert_pos_invoice").validate();
+
+        //Insert invoice
+        $("#insert_invoice").validate();
+
+        //Update invoice
+        $("#invoice_update").validate();
+
+        //Insert purchase
+        $("#insert_purchase").validate();
+
+        //Update purchase
+        $("#purchase_update").validate();
+
+        //Add category
+        $("#insert_category").validate();
+
+        //Update category
+        $("#category_update").validate();
+
+        //Stock report
+        $("#stock_report").validate();
+
+        //Stock report
+        $("#stock_report_supplier_wise").validate();
+        //Stock report
+        $("#stock_report_product_wise").validate();
+
+        //Create account
+        $("#create_account_data").validate();
+
+        //Update account
+        $("#update_account_data").validate();
+
+        //Inflow entry
+        $("#inflow_entry").validate();
+
+        //Outflow entry
+        $("#outflow_entry").validate();
+
+        //Tax entry
+        $("#tax_entry").validate();
+
+        //Update tax
+        $("#update_tax").validate();
+
+        //Account summary
+        $("#summary_datewise").validate();
+        //Comission generate
+        $("#commission_generate").validate();
+
+    </script>
+
+</body>
+
+</html>
